@@ -8,7 +8,12 @@
 
   outputs = { self, nixpkgs, flake-utils }: let
 
-    overlay = final: prev: {};
+    overlay = final: prev: let
+      rDev = prev.callPackage (import ./default.nix) {};
+    in {
+      inherit (rDev) rWrapper rstudioWrapper;
+      rPackages = rDev.rPackages;
+    };
     # each system
     eachSystem = system: let
 
