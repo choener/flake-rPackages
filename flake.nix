@@ -20,22 +20,23 @@
       pkgs = import nixpkgs {
         inherit system;
         config = {};
+        overlays = [ self.overlay ];
       };
 
-      rDev = pkgs.callPackage (import ./default.nix) {};
-      generate-r-packages = rDev.rWrapper.override { packages = [ rDev.rPackages.data_table ]; };
-      grp = {};
+      #rDev = pkgs.callPackage (import ./default.nix) {};
+      generate-r-packages = pkgs.rWrapper.override { packages = [ pkgs.rPackages.data_table ]; };
+      #grp = {};
 
     in rec {
       devShell = pkgs.stdenv.mkDerivation {
         name = "testEnv";
         nativeBuildInputs = [
-          (rDev.rstudioWrapper.override {packages = [rDev.rPackages.CytoML];})
-          (rDev.rWrapper.override {packages = [rDev.rPackages.CytoML];})
+          (pkgs.rstudioWrapper.override {packages = [pkgs.rPackages.CytoML];})
+          (pkgs.rWrapper.override {packages = [pkgs.rPackages.CytoML];})
         ];
       }; # devShell
       #packages = { inherit (rDev) rWrapper rstudioWrapper; rPackages = rDev.rPackages; };
-      apps.generate-r-packages = flake-utils.lib.mkApp { drv = grp; };
+      #apps.generate-r-packages = flake-utils.lib.mkApp { drv = grp; };
     }; # eachSystem
 
   in
