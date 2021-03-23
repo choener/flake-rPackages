@@ -23,9 +23,12 @@
     in rec {
       devShell = pkgs.stdenv.mkDerivation {
         name = "testEnv";
-        nativeBuildInputs = [ (rDev.rWrapper.override { packages = [ rDev.rPackages.CytoML ]; }) ];
+        nativeBuildInputs = [
+          (rDev.rstudioWrapper.override {packages = [rDev.rPackages.CytoML];})
+          (rDev.rWrapper.override {packages = [rDev.rPackages.CytoML];})
+        ];
       }; # devShell
-      packages = { inherit (rDev) rWrapper; rPackages = rDev.rPackages; };
+      packages = { inherit (rDev) rWrapper rstudioWrapper; rPackages = rDev.rPackages; };
       apps.generate-r-packages = flake-utils.lib.mkApp { drv = grp; };
     }; # eachSystem
 
