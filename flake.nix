@@ -23,9 +23,7 @@
         overlays = [ self.overlay ];
       };
 
-      #rDev = pkgs.callPackage (import ./default.nix) {};
       generate-r-packages = pkgs.rWrapper.override { packages = [ pkgs.rPackages.data_table ]; };
-      #grp = {};
 
     in rec {
       devShell = pkgs.stdenv.mkDerivation {
@@ -35,8 +33,6 @@
           (pkgs.rWrapper.override {packages = [pkgs.rPackages.CytoML];})
         ];
       }; # devShell
-      #packages = { inherit (rDev) rWrapper rstudioWrapper; rPackages = rDev.rPackages; };
-      #apps.generate-r-packages = flake-utils.lib.mkApp { drv = grp; };
     }; # eachSystem
 
   in
