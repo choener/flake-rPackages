@@ -28,8 +28,9 @@
           (rDev.rWrapper.override {packages = [rDev.rPackages.CytoML];})
         ];
       }; # devShell
-      packages = { inherit (rDev) rWrapper rstudioWrapper; rPackages = rDev.rPackages; };
+      #packages = { inherit (rDev) rWrapper rstudioWrapper; rPackages = rDev.rPackages; };
       apps.generate-r-packages = flake-utils.lib.mkApp { drv = grp; };
+      overlay = final: prev: {};
     }; # eachSystem
 
   in
