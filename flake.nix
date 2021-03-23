@@ -8,6 +8,7 @@
 
   outputs = { self, nixpkgs, flake-utils }: let
 
+    overlay = final: prev: {};
     # each system
     eachSystem = system: let
 
@@ -30,10 +31,9 @@
       }; # devShell
       #packages = { inherit (rDev) rWrapper rstudioWrapper; rPackages = rDev.rPackages; };
       apps.generate-r-packages = flake-utils.lib.mkApp { drv = grp; };
-      overlay = final: prev: {};
     }; # eachSystem
 
   in
-    flake-utils.lib.eachDefaultSystem eachSystem;
+    flake-utils.lib.eachDefaultSystem eachSystem // { inherit overlay; };
 }
 
