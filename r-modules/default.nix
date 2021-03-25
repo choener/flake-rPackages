@@ -250,14 +250,14 @@ let
     ChemmineOB = [ pkgs.openbabel pkgs.pkg-config ];
     cit = [ pkgs.gsl_1 ];
     curl = [ pkgs.curl.dev ];
-    CytoML = [ pkgs.hdf5.dev pkgs.libxml2.dev ];
+    CytoML = [ pkgs.hdf5-threadsafe.dev pkgs.libxml2.dev ];
     data_table = [pkgs.zlib.dev] ++ lib.optional stdenv.isDarwin pkgs.llvmPackages.openmp;
     devEMF = [ pkgs.xorg.libXft.dev pkgs.x11 ];
     diversitree = [ pkgs.gsl_1 pkgs.fftw ];
     EMCluster = [ pkgs.lapack ];
     fftw = [ pkgs.fftw.dev ];
     fftwtools = [ pkgs.fftw.dev ];
-    flowWorkspace = [ pkgs.hdf5.dev ];
+    flowWorkspace = [ pkgs.hdf5-threadsafe.dev ];
     Formula = [ pkgs.gmp ];
     gdtools = [ pkgs.cairo.dev pkgs.fontconfig.lib pkgs.freetype.dev ];
     git2r = [ pkgs.zlib.dev pkgs.openssl.dev pkgs.libssh2.dev pkgs.libgit2 pkgs.pkg-config ];
@@ -283,7 +283,7 @@ let
     mvabund = [ pkgs.gsl_1 ];
     mwaved = [ pkgs.fftw.dev ];
     ncdf4 = [ pkgs.netcdf ];
-    ncdfFlow = [ pkgs.hdf5.dev ];
+    ncdfFlow = [ pkgs.hdf5-threadsafe.dev ];
     nloptr = [ pkgs.nlopt pkgs.pkg-config ];
     n1qn1 = [ pkgs.gfortran ];
     odbc = [ pkgs.unixODBC ];
@@ -312,7 +312,7 @@ let
     Rglpk = [ pkgs.glpk ];
     RGtk2 = [ pkgs.gtk2.dev ];
     rhdf5 = [ pkgs.zlib ];
-    Rhdf5lib = [ pkgs.zlib pkgs.zlib.dev pkgs.hdf5 pkgs.hdf5.dev ];
+    Rhdf5lib = [ pkgs.zlib pkgs.zlib.dev pkgs.hdf5-threadsafe pkgs.hdf5-threadsafe.dev ];
     Rhpc = [ pkgs.zlib pkgs.bzip2.dev pkgs.icu pkgs.lzma.dev pkgs.mpi pkgs.pcre.dev ];
     Rhtslib = [ pkgs.zlib.dev pkgs.automake pkgs.autoconf pkgs.bzip2.dev pkgs.lzma.dev pkgs.curl.dev ];
     rjags = [ pkgs.jags ];
@@ -679,7 +679,7 @@ let
         sha256 = "lcGFr5o9j4PFekTaNmE86LAcwcxeFcVOv4rZ2HsgXD8=";
       };
       propagatedBuildInputs = with new; [ BH Rcpp RcppArmadillo RcppParallel Rhdf5lib RProtoBufLib ];
-      buildInputs = [ R pkgs.hdf5.dev ];
+      buildInputs = [ R pkgs.hdf5-threadsafe.dev ];
     };
 
 # CHzS End
