@@ -31,8 +31,10 @@
         nativeBuildInputs = [
           (pkgs.rstudioWrapper.override {packages = [pkgs.rPackages.CytoML];})
           (pkgs.rWrapper.override {packages = [pkgs.rPackages.CytoML];})
+          #(pkgs.rWrapper.override {packages = [pkgs.rPackages.Rhdf5lib];})
         ];
       }; # devShell
+      packages = pkgs.rPackages;
     }; # eachSystem
 
   in

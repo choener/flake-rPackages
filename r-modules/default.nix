@@ -1,6 +1,6 @@
 /* This file defines the composition for CRAN (R) packages. */
 
-{ R, pkgs, overrides }:
+{ R, pkgs, autoconf, automake, autoreconfHook, overrides }:
 
 let
   inherit (pkgs) cacert fetchurl stdenv lib;
@@ -312,7 +312,7 @@ let
     Rglpk = [ pkgs.glpk ];
     RGtk2 = [ pkgs.gtk2.dev ];
     rhdf5 = [ pkgs.zlib ];
-    Rhdf5lib = [ pkgs.zlib pkgs.zlib.dev pkgs.hdf5-threadsafe pkgs.hdf5-threadsafe.dev ];
+    Rhdf5lib = [ pkgs.zlib.dev ];
     Rhpc = [ pkgs.zlib pkgs.bzip2.dev pkgs.icu pkgs.lzma.dev pkgs.mpi pkgs.pcre.dev ];
     Rhtslib = [ pkgs.zlib.dev pkgs.automake pkgs.autoconf pkgs.bzip2.dev pkgs.lzma.dev pkgs.curl.dev ];
     rjags = [ pkgs.jags ];
@@ -679,7 +679,7 @@ let
         sha256 = "lcGFr5o9j4PFekTaNmE86LAcwcxeFcVOv4rZ2HsgXD8=";
       };
       propagatedBuildInputs = with new; [ BH Rcpp RcppArmadillo RcppParallel Rhdf5lib RProtoBufLib ];
-      buildInputs = [ R pkgs.hdf5-threadsafe.dev ];
+      buildInputs = [ R pkgs.zlib.dev ];
     };
 
 # CHzS End
@@ -743,7 +743,7 @@ let
     });
 
     Rhdf5lib = old.Rhdf5lib.overrideDerivation (attrs: {
-      # patches = [ ./patches/Rhdf5lib.patch ];
+      patches = [ ./patches/Rhdf5lib.patch ];
     });
 
     rJava = old.rJava.overrideDerivation (attrs: {
