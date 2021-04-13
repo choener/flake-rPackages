@@ -75,7 +75,7 @@
     echo -n $R_LIBS_SITE | sed -e 's/:/", "/g' >> $out/$fixLibsR
     echo -n "\"))" >> $out/$fixLibsR
     echo >> $out/$fixLibsR
-    makeQtWrapper ${rstudio}/bin/rstudio $out/bin/rstudio \
+    makeWrapper ${rstudio}/bin/rstudio $out/bin/rstudio \
       --set R_PROFILE_USER $out/$fixLibsR
     cp ${Rwrapped}/bin/R $out/bin/
     ln -s ${Rwrapped}/library $out/library
