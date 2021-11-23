@@ -13,6 +13,10 @@
     in {
       inherit (rDev) rWrapper rstudioWrapper;
       rPackages = rDev.rPackages;
+    }; # default overlay
+    overlays = {
+      # flow cytometry overlay
+      flowCytometry = import ./flowCytometry.nix;
     };
     # each system
     eachSystem = system: let
@@ -20,7 +24,7 @@
       pkgs = import nixpkgs {
         inherit system;
         config = {};
-        overlays = [ self.overlay ];
+        overlays = [ self.overlay self.overlays.flowCytometry ];
       };
 
       generate-r-packages = pkgs.rWrapper.override { packages = [ pkgs.rPackages.data_table ]; };
@@ -34,10 +38,10 @@
           #(pkgs.rWrapper.override {packages = [pkgs.rPackages.Rhdf5lib];})
         ];
       }; # devShell
-      packages = pkgs.rPackages;
+      #packages = pkgs.rPackages;
     }; # eachSystem
 
   in
-    flake-utils.lib.eachDefaultSystem eachSystem // { inherit overlay; };
+    flake-utils.lib.eachDefaultSystem eachSystem // { inherit overlay overlays; };
 }
 
