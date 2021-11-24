@@ -1,5 +1,8 @@
 {
-  description = "Experimental Nix flake to re-package rPackages";
+  description = ''
+    Nix flake to re-package rPackages. Both ``overlay`` with newer versions of rPackages and
+    ``overlay.flowCytometry`` are available.
+  '';
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";

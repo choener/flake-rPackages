@@ -1,5 +1,12 @@
 # flake-rPackages
-experimental flake to repackage rPackages
+
+Nix flake to re-package rPackages.
+
+The following overlays are provided:
+- ``overlay``: which provides rPackages with bioconductor 3.12
+- ``overlays.flowCytometry``
+    - flowFDA
+    - Phenoflow
 
 ## How to use
 
@@ -49,3 +56,6 @@ have a ```nix develop``` shell with ```R``` and ```CytoML``` enabled.
 }
 ```
 
+## TODOs
+
+- provide under ``overlays`` several versions of older rPackages.
